@@ -1,11 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans:     "Outfit", sans-serif;
-  --font-display:  "Outfit", sans-serif;
-  --font-serif:    "Outfit", sans-serif;
+  --font-sans: "Outfit", sans-serif;
+  --font-display: "Outfit", sans-serif;
+  --font-serif: "Outfit", sans-serif;
   --font-ethiopic: "Outfit", sans-serif;
-  --font-mono:     "Outfit", sans-serif;
+  --font-mono: "Outfit", sans-serif;
 }
 
 :root {
@@ -61,7 +61,8 @@ a {
   text-decoration: none;
 }
 
-em, i {
+em,
+i {
   font-style: normal;
 }
 
@@ -188,7 +189,7 @@ em, i {
 
 /* Big prominent borderless logo */
 .brand-header-logo {
-  height: 76px;
+  height: 110px;
   width: auto;
   max-width: 180px;
   object-fit: contain;
@@ -939,9 +940,11 @@ em, i {
   .spec-accordion-body {
     padding: 0 8px 20px 8px;
   }
+
   .spec-header-left {
     gap: 16px;
   }
+
   .spec-impact-pill {
     display: none;
   }
@@ -1361,5 +1364,57 @@ em, i {
 
   .contact-flow-grid {
     grid-template-columns: 1fr;
+  }
+
+  .scroll-to-top-btn {
+    bottom: 20px;
+    right: 20px;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+/* Floating Back to Top Button */
+.scroll-to-top-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 90;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  background: rgba(24, 24, 27, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border-subtle);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: scrollToTopIn 0.25s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.scroll-to-top-btn:hover {
+  background: #27272a;
+  border-color: #52525b;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+}
+
+.scroll-to-top-btn:active {
+  transform: scale(0.94);
+}
+
+@keyframes scrollToTopIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

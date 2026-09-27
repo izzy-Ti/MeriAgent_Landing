@@ -1,5 +1,10 @@
 import { useEffect, useState, useRef } from 'react'
 import { motion } from 'motion/react'
+import emailjs from '@emailjs/browser'
+
+const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY || 'Y1gPLMfpYuU9kXcoi'
+const EMAILJS_SERVICE_ID = import.meta.env.VITE_SERVICE_ID || 'service_atiyidj'
+const EMAILJS_TEMPLATE_ID = import.meta.env.VITE_TEMPLATE_ID || 'template_mcyr4m8'
 
 /* ── User SquishyCard component (exact as provided) ── */
 export const SquishyCard = () => {
@@ -493,11 +498,17 @@ export default function App() {
   const [approved, setApproved] = useState(false)
   const [clock, setClock] = useState('')
   const [pageLoaded, setPageLoaded] = useState(false)
+  const [showScrollTop, setShowScrollTop] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [formData, setFormData] = useState({ name: '', phone: '', hotel: '', note: '' })
   const [openSpec, setOpenSpec] = useState('01')
   const containerRef = useRef(null)
   const briefTrackRef = useRef(null)
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
 
   const scrollToContact = () => {
     const el = document.querySelector('#contact')
@@ -506,24 +517,49 @@ export default function App() {
     }
   }
 
-  const handleDemoSubmit = (e) => {
+  const handleDemoSubmit = async (e) => {
     e.preventDefault()
+    setIsSubmitting(true)
+
     const form = new FormData(e.currentTarget)
     const name = form.get('name') || ''
     const phone = form.get('phone') || ''
     const hotel = form.get('hotel') || ''
+    const email = form.get('email') || ''
     const note = form.get('note') || ''
 
-    setFormData({ name, phone, hotel, note })
-    setFormSubmitted(true)
+    setFormData({ name, phone, hotel, email, note })
 
-    const subject = `መሪAgent Demo Request: ${name} (${phone})`
-    const body = `Full Name: ${name}\nPhone Number: ${phone}\nHotel / Property: ${hotel}\nNotes: ${note}\nTimestamp: ${new Date().toLocaleString()}`
-    const mailto = `mailto:israelashenafi29@gmail.com,Tinsaebefekadu2012@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    // Exact variable names matching the EmailJS template: {{name}}, {{phone}}, {{Property}}, {{email}}, {{message}}
+    const templateParams = {
+      name: name,
+      phone: phone,
+      Property: hotel,
+      property: hotel,
+      hotel: hotel,
+      email: email || 'israelashenafi29@gmail.com',
+      message: note ? note : `Client requested a demo for ${hotel}`,
+      user_name: name,
+      user_phone: phone,
+      note: note,
+      time: new Date().toLocaleTimeString(),
+      date: new Date().toLocaleDateString(),
+    }
 
-    const link = document.createElement('a')
-    link.href = mailto
-    link.click()
+    try {
+      const res = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      )
+      console.log('EmailJS response:', res)
+    } catch (err) {
+      console.error('EmailJS error:', err)
+    } finally {
+      setIsSubmitting(false)
+      setFormSubmitted(true)
+    }
   }
 
   const scrollBrief = (dir) => {
@@ -593,6 +629,16 @@ export default function App() {
     return () => observer.disconnect()
   }, [])
 
+  // Show scroll-to-top button when user scrolls down
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 350)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    handleScroll()
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   function prevSlide() {
     setActiveSlide((prev) => (prev === 0 ? SLIDES.length - 1 : prev - 1))
   }
@@ -601,11 +647,11 @@ export default function App() {
     setActiveSlide((prev) => (prev === 0 ? SLIDES.length - 1 : prev + 1) % SLIDES.length)
   }
 
-  // Consistent, regular automatic slideshow (3.2s cadence)
+  // Consistent, regular automatic slideshow (8.2s cadence)
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % SLIDES.length)
-    }, 3200)
+    }, 8200)
     return () => clearInterval(timer)
   }, [activeSlide])
 
@@ -652,13 +698,7 @@ export default function App() {
           </nav>
 
           <div className="nav-right-actions">
-            <button
-              type="button"
-              className="hero-pill-btn !py-1.5 !px-4 !text-xs cursor-pointer hidden md:inline-flex"
-              onClick={scrollToContact}
-            >
-              {lang === 'am' ? 'ዴሞ ይጠይቁ' : 'Request Demo'}
-            </button>
+
 
             <button
               type="button"
@@ -1148,19 +1188,39 @@ export default function App() {
 
                     <div className="contact-form-field">
                       <label className="contact-form-label">
-                        {lang === 'am' ? 'የክፍል ብዛት ወይም ሲስተም (አማራጭ)' : 'Rooms or Current PMS (Optional)'}
+                        {lang === 'am' ? 'ኢሜይል (አማራጭ)' : 'Email Address (Optional)'}
                       </label>
                       <input
-                        name="note"
+                        name="email"
+                        type="email"
                         className="contact-form-input"
-                        placeholder={lang === 'am' ? 'ምሳሌ፡ 85 ክፍሎች፣ ኦፔራ' : 'e.g. 85 rooms, Opera, manual...'}
+                        placeholder="gm@hotel.com"
                       />
                     </div>
                   </div>
 
-                  <button type="submit" className="contact-submit-btn">
-                    <span>{lang === 'am' ? 'ዴሞ ይጠይቁ' : 'Request Demo'}</span>
-                    <span>→</span>
+                  <div className="contact-form-field">
+                    <label className="contact-form-label">
+                      {lang === 'am' ? 'የክፍል ብዛት ወይም ማስታወሻ (አማራጭ)' : 'Rooms, Current PMS, or Message (Optional)'}
+                    </label>
+                    <input
+                      name="note"
+                      className="contact-form-input"
+                      placeholder={lang === 'am' ? 'ምሳሌ፡ 85 ክፍሎች፣ ኦፔራ...' : 'e.g. 85 rooms, Opera, dynamic pricing...'}
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="contact-submit-btn cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
+                    <span>
+                      {isSubmitting
+                        ? (lang === 'am' ? 'በመላክ ላይ...' : 'Sending Request...')
+                        : (lang === 'am' ? 'ዴሞ ይጠይቁ' : 'Request Demo')}
+                    </span>
+                    <span>{isSubmitting ? '⏳' : '→'}</span>
                   </button>
 
                   <div className="text-[12px] text-zinc-500 mt-2 text-center">
@@ -1235,6 +1295,30 @@ export default function App() {
           © {new Date().getFullYear()} መሪAgent. Addis Ababa, Ethiopia.
         </div>
       </footer>
+
+      {/* Floating Scroll-to-Top Button */}
+      {showScrollTop && (
+        <button
+          type="button"
+          onClick={scrollToTop}
+          className="scroll-to-top-btn"
+          aria-label="Back to top"
+          title={lang === 'am' ? 'ወደ መጀመሪያው ተመለስ' : 'Back to top'}
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <polyline points="18 15 12 9 6 15" />
+          </svg>
+        </button>
+      )}
     </div>
   )
 }
