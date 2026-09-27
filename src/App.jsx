@@ -145,7 +145,7 @@ const SLIDES = [
     action: 'REQUEST DEMO',
     actionAm: 'ዴሞ ይጠይቁ',
     tag: '01 / 04 · EXECUTIVE LAYER',
-    bg: '/hotel-ceo-penthouse.jpg',
+    bg: '/hotel-ceo-boss.jpg',
   },
   {
     word: 'O N E  M I N D',
@@ -155,7 +155,7 @@ const SLIDES = [
     action: 'REQUEST DEMO',
     actionAm: 'ዴሞ ይጠይቁ',
     tag: '02 / 04 · SEVEN SPECIALISTS',
-    bg: '/hotel-ceo-centered.jpg',
+    bg: '/hotel-ceo-atrium-wide.jpg',
   },
   {
     word: 'A U T O N O M Y',
@@ -490,7 +490,6 @@ const BRIEF_CARDS = [
 export default function App() {
   const [lang, setLang] = useState('en')
   const [activeSlide, setActiveSlide] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
   const [approved, setApproved] = useState(false)
   const [clock, setClock] = useState('')
   const [pageLoaded, setPageLoaded] = useState(false)
@@ -602,26 +601,20 @@ export default function App() {
     setActiveSlide((prev) => (prev === 0 ? SLIDES.length - 1 : prev + 1) % SLIDES.length)
   }
 
-  // Automatic slideshow transition with manual click reset and hover pause
+  // Consistent, regular automatic slideshow (3.2s cadence)
   useEffect(() => {
-    if (isPaused) return
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % SLIDES.length)
-    }, 550)
+    }, 3200)
     return () => clearInterval(timer)
-  }, [activeSlide, isPaused])
+  }, [activeSlide])
 
   const slide = SLIDES[activeSlide]
 
   return (
     <div ref={containerRef} className={`site-wrapper ${pageLoaded ? 'loaded' : 'pre-load'}`}>
       {/* ——— CINEMATIC HERO STAGE WITH AUTO-SLIDESHOW & LOAD ANIMATIONS ——— */}
-      <section
-        className="cinematic-hero"
-        id="top"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
+      <section className="cinematic-hero" id="top">
         {/* Silky cross-fade background layers */}
         {SLIDES.map((s, idx) => (
           <img
