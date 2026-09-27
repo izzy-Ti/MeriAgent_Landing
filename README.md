@@ -48,9 +48,9 @@ Side-by-side contrast between **The Old Way** (fragmented logins, delayed mainte
 
 ### 6. Chapter 05: Direct Access & Demo Request
 - Direct phone and hotel intake form for GMs and property owners.
-- Direct contact lines to founders in **Addis Ababa, Ethiopia**:
-  - **Israel Ashenafi:** +251 992 013 392 · `israelashenafi29@gmail.com`
-  - **Tinsae Befekadu:** +251 940 558 597 · `Tinsaebefekadu2012@gmail.com`
+- Direct contact line in **Addis Ababa, Ethiopia**:
+  - **Phone:** +251 992 013 392
+  - **Email:** `israelashenafi29@gmail.com`
 
 ---
 

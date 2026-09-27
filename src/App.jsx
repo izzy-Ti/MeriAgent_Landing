@@ -666,8 +666,9 @@ export default function App() {
           <img
             key={s.bg + idx}
             src={s.bg}
-            alt="Hotel CEO Agent"
+            alt={`መሪAgent Hotel CEO AI — ${s.word} — ${s.sub}`}
             className={`sculpture-bg-layer ${idx === activeSlide ? 'active' : ''}`}
+            loading={idx === 0 ? 'eager' : 'lazy'}
           />
         ))}
 
@@ -675,8 +676,8 @@ export default function App() {
 
         {/* Minimalist Top Navigation */}
         <header className="cinematic-nav nav-anim-target">
-          <a href="#top" className="brand-logo-link" title="መሪAgent">
-            <img src="/logo.png" alt="መሪAgent" className="brand-header-logo" />
+          <a href="#top" className="brand-logo-link" title="መሪAgent — Hotel CEO AI">
+            <img src="/logo.png" alt="መሪAgent Hotel CEO AI Logo" className="brand-header-logo" width="140" height="38" />
           </a>
 
           <nav className="nav-center-links">
@@ -1243,16 +1244,9 @@ export default function App() {
             <div className="text-xs text-zinc-400 mb-4">Addis Ababa, Ethiopia</div>
 
             <div className="contact-line">
-              <span className="text-[var(--text-muted)] font-mono text-xs">Phone 1</span>
+              <span className="text-[var(--text-muted)] font-mono text-xs">Phone</span>
               <a href="tel:+251992013392" className="font-mono text-sm text-white hover:text-[var(--purple-glow)]">
                 +251 992 013 392
-              </a>
-            </div>
-
-            <div className="contact-line">
-              <span className="text-[var(--text-muted)] font-mono text-xs">Phone 2</span>
-              <a href="tel:+251940558597" className="font-mono text-sm text-white hover:text-[var(--purple-glow)]">
-                +251 940 558 597
               </a>
             </div>
 
@@ -1264,9 +1258,15 @@ export default function App() {
             </div>
 
             <div className="contact-line">
-              <span className="text-[var(--text-muted)] font-mono text-xs">Email 2</span>
-              <a href="mailto:Tinsaebefekadu2012@gmail.com" className="font-mono text-xs text-white hover:text-[var(--purple-glow)]">
-                Tinsaebefekadu2012@gmail.com
+              <span className="text-[var(--text-muted)] font-mono text-xs">Developer</span>
+              <a
+                href="https://israelashenafi.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-mono text-xs text-[var(--purple-glow)] hover:text-white transition-colors flex items-center gap-1"
+              >
+                <span>israelashenafi.com</span>
+                <span>↗</span>
               </a>
             </div>
           </div>
@@ -1276,7 +1276,7 @@ export default function App() {
       {/* Footer */}
       <footer className="flow-footer">
         <div className="flex items-center gap-4">
-          <img src="/logo.png" alt="መሪAgent" className="h-10 w-auto object-contain" />
+          <img src="/logo.png" alt="መሪAgent — Hotel CEO AI Addis Ababa" className="h-10 w-auto object-contain" width="120" height="40" />
           <span className="font-bold text-white text-sm">
             <span className="font-['Noto_Serif_Ethiopic']">መሪ</span>Agent — Hotel CEO AI
           </span>
@@ -1291,8 +1291,17 @@ export default function App() {
           <span className="ml-1.5">↑</span>
         </button>
 
-        <div className="text-[12px] font-mono text-[var(--text-muted)]">
-          © {new Date().getFullYear()} መሪAgent. Addis Ababa, Ethiopia.
+        <div className="flex flex-col items-center md:items-end gap-1.5 text-[12px] font-mono text-[var(--text-muted)]">
+          <div>© {new Date().getFullYear()} መሪAgent. Addis Ababa, Ethiopia.</div>
+          <a
+            href="https://israelashenafi.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[11px] text-zinc-400 hover:text-white transition-colors flex items-center gap-1 group"
+          >
+            <span>Developed by <span className="text-zinc-200 group-hover:text-[var(--purple-glow)] underline underline-offset-4">Israel Ashenafi</span></span>
+            <span>↗</span>
+          </a>
         </div>
       </footer>
 
