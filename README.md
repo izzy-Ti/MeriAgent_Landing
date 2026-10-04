@@ -1,112 +1,44 @@
-# መሪAgent — Hotel CEO Artificial Intelligence
+# MeriAgent Landing
 
-> **Official Domain:** [https://meriagent.tech](https://meriagent.tech)  
-> *One Executive Voice. Zero Screen Hunting.*
+React + Vite marketing website for MeriAgent, an AI hotel management platform.
 
----
+## Page content
 
-## 🏨 Overview
+- Coded SVG hotel atrium hero with CSS lighting, slideshow controls, and reduced-motion support. The hero does not load background photographs.
+- Benefit-focused copy for hotel owners, managers, and teams.
+- All six product screenshots from `public/scc/` appear after the three cards beneath the executive headline in alternating layouts, with benefit copy, scroll reveals, reduced-motion support, and an accessible full-size screenshot dialog.
+- Existing animated cards, briefing carousel, department accordions, comparison panels, and demo request form.
+- English and Amharic content.
+- Standalone documentation site at `/docs/` with a searchable sidebar, individual guides, on-page navigation, and copyable API examples. Covers backend architecture, JWT authentication, hotel isolation, REST resources, approvals, and onboarding. API routes are grounded in the backend source; examples use placeholder environment variables.
+- Briefing figures and approval interactions are explicitly illustrative, not live hotel data or verified customer outcomes.
 
-**መሪAgent** (`meriagent.tech`) is an autonomous executive AI platform tailored for luxury hotels and hospitality properties. Built for hotel General Managers, Owners, and Asset Boards, መሪAgent synthesizes disparate hotel operations—from PMS room inventories and OTA channel rates to engineering sensors and housekeeping velocity—under one calm, authoritative CEO intelligence.
+## Development
 
-Rather than logging into five fragmented dashboards or chasing department heads across endless WhatsApp messages, leadership receives a clear, plain-language operational briefing every morning at 07:00 AM with autonomous pre-guest dispatch and 1-tap GM authorizations.
-
----
-
-## 🌟 Core Features & Landing Page Architecture
-
-### 1. Cinematic Hero Stage & Auto-Slideshow
-- High-impact visuals featuring the AI Hotel CEO in executive 5-star hotel lounges and penthouses.
-- Smooth, regular 3.2-second automated slideshow with edge arrow navigation and pagination dots.
-- Instant bilingual toggle between **English** and **Amharic (አማርኛ)**.
-
-### 2. Chapter 01: The Executive Layer (Principles)
-- **07:00 AM Briefing:** One synthesis on occupancy, rate yield, and priority turns on your desk.
-- **Auto-Dispatch:** Anomaly detection and immediate work orders dispatched to technicians before guest check-in.
-- **1-Tap Approval:** Routine tasks execute autonomously; pricing shifts and budget decisions wait for your single tap.
-
-### 3. Chapter 02: The 07:00 AM Daily Brief
-- Horizontal interactive brief cards modeled after executive operational reports.
-- Live telemetry on:
-  - **Occupancy:** Real-time suite occupancy and walk-in yield capture.
-  - **Dynamic Yield:** Demand-based surge pricing adjustments in Ethiopian Birr (**ETB**).
-  - **Engineering Health:** Pre-arrival HVAC compressor and room diagnostics.
-  - **Housekeeping Velocity:** Turnaround times synchronized to VIP guest arrival schedules.
-
-### 4. Chapter 03: Seven Specialized AI Departments
-Seven deep AI specialists acting as one cohesive mind:
-1. **Revenue & Dynamic Yield:** +14.2% RevPAR, competitor rate intelligence, and OTA commission shielding.
-2. **Occupancy & Fill Forecast:** 91.8% peak fill modeling, inbound flight corridors, and conference demand forecasting.
-3. **Housekeeping Velocity:** 22 min/turn, VIP priority queues, and linen/minibar telemetry.
-4. **Predictive Engineering:** < 8 min dispatch, HVAC vibration sensing, smart lock alerts, and pre-guest defect resolution.
-5. **Staff Arrival Alignment:** -18% overtime, occupancy-calibrated shifts, and banquet allocation.
-6. **Guest In-Stay Recovery:** 4.9 Star Index, sentiment radar, instant service recovery, and VIP preference memory.
-7. **Owner & Board P&L:** Real-time P&L, live RevPAR/GOPPAR ledger, and WhatsApp executive digest.
-
-### 5. Chapter 04: The Operational Shift
-Side-by-side contrast between **The Old Way** (fragmented logins, delayed maintenance discovery, lost weekend yields) and **With መሪAgent** (single executive desk, automated prioritization, 1-tap yield commitment).
-
-### 6. Chapter 05: Direct Access & Demo Request
-- Direct phone and hotel intake form for GMs and property owners.
-- Direct contact line in **Addis Ababa, Ethiopia**:
-  - **Phone:** +251 992 013 392
-  - **Email:** `israelashenafi29@gmail.com`
-
----
-
-## 🛠️ Technology Stack
-
-- **Framework:** [React 19](https://react.dev/)
-- **Build Tool:** [Vite](https://vite.dev/)
-- **Styling:** Vanilla CSS + [Tailwind CSS v4](https://tailwindcss.com/)
-- **Animations:** [Motion (Motion/React)](https://motion.dev/)
-- **Typography:** Outfit (Sans, Mono, Display) & Noto Serif Ethiopic
-- **Localization:** English (EN) & Amharic (አማርኛ)
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js (v18 or higher recommended)
-- npm
-
-### Installation
-```bash
-# Clone the repository
-git clone https://github.com/izzy-Ti/MeriAgent_Landing.git
-
-# Navigate into project directory
-cd MeriAgent_Landing
-
-# Install dependencies
+```sh
 npm install
-```
-
-### Local Development
-```bash
 npm run dev
 ```
-Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-### Production Build
-```bash
+## Validation and production build
+
+```sh
+npm run lint
 npm run build
-```
-Generates production assets in the `dist/` directory.
-
-### Preview Build Locally
-```bash
 npm run preview
 ```
 
----
+Vite outputs the landing page into `dist/index.html` and the separate documentation page into `dist/docs/index.html`, with separate page bundles. Deploy the entire `dist/` directory so `/docs/` works on static hosting without a single-page-app rewrite. Individual guides use shareable hashes such as `/docs/#api`. Use a Node.js version compatible with the installed Vite release.
 
-## 🌐 Deployment & Domain
+## Demo requests
 
-- **Production URL:** [https://meriagent.tech](https://meriagent.tech)
-- **Region:** Addis Ababa, Ethiopia & Global Hospitality
+The existing EmailJS integration uses `VITE_PUBLIC_KEY`, `VITE_SERVICE_ID`, and `VITE_TEMPLATE_ID`, with the existing fallback configuration retained. Do not submit the demo form while testing unless an actual contact request is intended.
 
----
+## Main files
 
-© 2026 መሪAgent (`meriagent.tech`). All rights reserved.
+- `src/App.jsx`: marketing copy, existing UI components, interactions, and localization.
+- `src/HeroScene.jsx`: decorative hotel scene drawn as SVG.
+- `src/ProductShowcase.jsx` and `src/showcase.css`: screenshot stories, animations, and full-size viewer.
+- `docs/index.html` and `src/docs-main.jsx`: standalone documentation entry point.
+- `src/Docs.jsx`: searchable documentation, guides, and API reference.
+- `src/docs.css`: documentation layout and responsive navigation.
+- `src/index.css`: styles, responsive layouts, and animation preferences.

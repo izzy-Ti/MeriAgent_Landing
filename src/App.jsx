@@ -1,6 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
 import { motion } from 'motion/react'
 import emailjs from '@emailjs/browser'
+import HeroScene from './HeroScene'
+import ProductShowcase from './ProductShowcase'
 
 const EMAILJS_PUBLIC_KEY = import.meta.env.VITE_PUBLIC_KEY || 'Y1gPLMfpYuU9kXcoi'
 const EMAILJS_SERVICE_ID = import.meta.env.VITE_SERVICE_ID || 'service_atiyidj'
@@ -137,51 +139,14 @@ export const Background = () => {
   );
 };
 
-const PillarCard = Card;
 
 
 
 const SLIDES = [
-  {
-    word: 'MERI AGENT',
-    wordAm: 'መ ሪ A G E N T',
-    sub: 'HOTEL CEO ARTIFICIAL INTELLIGENCE',
-    subAm: 'የሆቴል ዋና ሥራ አስፈፃሚ አርቴፊሻል ኢንተለጀንስ',
-    action: 'REQUEST DEMO',
-    actionAm: 'ዴሞ ይጠይቁ',
-    tag: '01 / 04 · EXECUTIVE LAYER',
-    bg: '/hotel-ceo-boss.jpg',
-  },
-  {
-    word: 'O N E  M I N D',
-    wordAm: 'አ ን ድ  አ እ ም ሮ',
-    sub: 'SEVEN DEPARTMENTS UNDER ONE VOICE',
-    subAm: 'ሰባት ክፍሎች በአንድ ድምፅ ይተባበራሉ',
-    action: 'REQUEST DEMO',
-    actionAm: 'ዴሞ ይጠይቁ',
-    tag: '02 / 04 · SEVEN SPECIALISTS',
-    bg: '/hotel-ceo-atrium-wide.jpg',
-  },
-  {
-    word: 'A U T O N O M Y',
-    wordAm: 'ራስ-ገዝ አሰራር',
-    sub: 'PROACTIVE DISPATCH · 1-TAP GM APPROVAL',
-    subAm: 'ፈጣን እርምጃዎች · የሥራ አስኪያጁ 1-ጠቅታ ይሁንታ',
-    action: 'REQUEST DEMO',
-    actionAm: 'ዴሞ ይጠይቁ',
-    tag: '03 / 04 · GOVERNANCE & CONTROL',
-    bg: '/hotel-ceo-penthouse.jpg',
-  },
-  {
-    word: 'R E V E N U E',
-    wordAm: 'የ ገ ቢ  እ ድ ገ ት',
-    sub: 'DYNAMIC YIELD & REVPAR PROTECTION',
-    subAm: 'ተለዋዋጭ ዋጋ አሰጣጥ እና የገቢ ጥበቃ',
-    action: 'REQUEST DEMO',
-    actionAm: 'ዴሞ ይጠይቁ',
-    tag: '04 / 04 · ASSET GROWTH',
-    bg: '/hotel-ceo-centered.jpg',
-  },
+  { word: 'LEAD YOUR HOTEL.', wordAm: 'ሆቴልዎን ይምሩ።', sub: 'MORE CLARITY. MORE TIME. MORE OPPORTUNITY.', subAm: 'ግልጽ እይታ። ተጨማሪ ጊዜ። ተጨማሪ እድል።', tag: '01 / 04 · YOUR HOTEL, TOGETHER' },
+  { word: 'MAKE ROOM FOR MORE.', wordAm: 'ለተጨማሪ እድል።', sub: 'FIND REVENUE OPPORTUNITIES IN EVERY STAY', subAm: 'በእያንዳንዱ ቆይታ የገቢ እድሎችን ያግኙ', tag: '02 / 04 · REVENUE THAT WORKS HARDER' },
+  { word: 'LESS CHASING.', wordAm: 'ያነሰ ውጣ ውረድ።', sub: 'GIVE YOUR TEAM A CLEARER DAY', subAm: 'ለቡድንዎ ግልጽ የስራ ቀን ይስጡ', tag: '03 / 04 · TIME BACK FOR YOUR TEAM' },
+  { word: 'BETTER STAYS.', wordAm: 'የተሻለ ቆይታ።', sub: 'READY ROOMS. FASTER FOLLOW-UP. HAPPIER GUESTS.', subAm: 'ዝግጁ ክፍሎች። ፈጣን ምላሽ። ደስተኛ እንግዶች።', tag: '04 / 04 · SERVICE WORTH RETURNING FOR' },
 ]
 
 const PILLARS = [
@@ -189,214 +154,51 @@ const PILLARS = [
     num: '01',
     en: {
       tag: 'Pro · 01',
-      title: <>07:00 AM<br />Briefing</>,
-      desc: 'One concise executive synthesis on occupancy, rate yield, and priority turns. Zero screen hunting.',
+      title: <>See the<br />whole day</>,
+      desc: 'Start with a clear picture of bookings, rooms, and what needs attention. Spend less time gathering updates and more time leading.',
     },
     am: {
       tag: 'መሪ · 01',
-      title: <>የጠዋት 1፡00<br />ማጠቃለያ</>,
-      desc: 'ስለ ገቢ፣ የክፍል ሙሌት እና የዕለቱ ስራዎች አንድ ግልጽ ማጠቃለያ። ስክሪኖችን መፈተሽ ቀረ።',
+      title: <>የቀኑን<br />ሁኔታ ይወቁ</>,
+      desc: 'ቦታ ማስያዝ፣ ክፍሎች እና ትኩረት የሚፈልጉ ስራዎችን በግልጽ ይመልከቱ። መረጃ ከመሰብሰብ ይልቅ ለአመራር ጊዜ ይስጡ።',
     },
   },
   {
     num: '02',
     en: {
       tag: 'Pro · 02',
-      title: <>Auto<br />Dispatch</>,
-      desc: 'Room delays and HVAC anomalies detected instantly and dispatched to teams before guests arrive.',
+      title: <>Give time<br />back</>,
+      desc: 'Keep housekeeping and maintenance moving with clear priorities. Help your team spend less time chasing updates and more time serving guests.',
     },
     am: {
       tag: 'መሪ · 02',
-      title: <>ራስ-ሰር<br />ምደባ</>,
-      desc: 'የጽዳት መዘግየት ወይም የኤሲ ብልሽት ከመፈጠሩ በፊት ችግሮቹን ለይቶ ለቡድኑ ይመድባል።',
+      title: <>ጊዜ<br />ይቆጥቡ</>,
+      desc: 'በግልጽ ቅድሚያ ጽዳትና ጥገናን ያቀናጁ። ቡድንዎ መረጃ ከመፈለግ ይልቅ ለእንግዶች አገልግሎት ጊዜ ይስጥ።',
     },
   },
   {
     num: '03',
     en: {
       tag: 'Pro · 03',
-      title: <>1-Tap<br />Approval</>,
-      desc: 'Operations execute autonomously. Price shifts and budget authorizations wait for your single tap.',
+      title: <>Stay in<br />control</>,
+      desc: 'Turn recommendations into decisions while keeping sensitive changes in your hands. Your team gets direction; you keep the final say.',
     },
     am: {
       tag: 'መሪ · 03',
-      title: <>1-ጠቅታ<br />ይሁንታ</>,
-      desc: 'ስራዎች በራሳቸው ይከናወናሉ፤ የዋጋ ለውጦች እና የፋይናንስ ውሳኔዎች የእርስዎን ማረጋገጫ ይጠብቃሉ።',
+      title: <>ቁጥጥር<br />ይያዙ</>,
+      desc: 'ምክሮችን ወደ ውሳኔ ይቀይሩ፤ አስፈላጊ ለውጦች በእርስዎ እጅ ይቆዩ። ቡድንዎ አቅጣጫ ያገኛል፣ የመጨረሻው ውሳኔ የእርስዎ ነው።',
     },
   },
 ]
 
 const SPECIALISTS = [
-  {
-    idx: '01',
-    en: {
-      name: 'Revenue & Dynamic Yield',
-      impact: '+14.2% RevPAR',
-      tags: [
-        'Dynamic Pricing Engine',
-        'Competitor Rate Intelligence',
-        'OTA Channel Commission Shield',
-        'Surge Demand Rate Optimization',
-        'Weekend Package Yield',
-        '1-Tap Rate Approval',
-      ],
-    },
-    am: {
-      name: 'ገቢ እና ተለዋዋጭ ዋጋ',
-      impact: '+14.2% አማካይ ገቢ',
-      tags: [
-        'ተለዋዋጭ የዋጋ ሞተር',
-        'የተፎካካሪ ሆቴሎች ዋጋ ክትትል',
-        'የኦቲኤ ኮሚሽን ቅነሳ',
-        'የወቅታዊ ፍላጎት ዋጋ ማስተካከያ',
-        'በ1-ጠቅታ ይሁንታ',
-      ],
-    },
-  },
-  {
-    idx: '02',
-    en: {
-      name: 'Occupancy & Fill Forecast',
-      impact: '91.8% Peak Fill',
-      tags: [
-        'Flight Inbound Corridors',
-        'Conference & Event Demand Modeling',
-        'Last-Minute Inventory Push',
-        'Group Booking Lead Scoring',
-        'Cancellations Offset Protocol',
-      ],
-    },
-    am: {
-      name: 'የክፍል ሙሌት ትንበያ',
-      impact: '91.8% ከፍተኛ ሙሌት',
-      tags: [
-        'የበረራ እና የኮንፈረንስ ፍላጎት ትንበያ',
-        'የመጨረሻ ሰዓት ክፍል ሽያጭ',
-        'የቡድን ቦታ ማስያዝ ግምገማ',
-        'የቦታ መሰረዝ ማካካሻ',
-      ],
-    },
-  },
-  {
-    idx: '03',
-    en: {
-      name: 'Housekeeping Velocity',
-      impact: '22 min / Turn',
-      tags: [
-        'VIP Check-in Priority Queue',
-        'Linen & Minibar Telemetry',
-        'Real-Time Floor Inspection',
-        'Auto-Dispatch by Proximity',
-        'Turnaround Velocity Metrics',
-      ],
-    },
-    am: {
-      name: 'የክፍል ጽዳት ፍጥነት',
-      impact: '22 ደቂቃ በክፍል',
-      tags: [
-        'ለቪአይፒ ክፍሎች ቅድሚያ',
-        'የአልጋ ልብስና ሚኒባር ቁጥጥር',
-        'የቀጥታ ፍተሻ እና ምደባ',
-        'ፈጣን የቡድን ቅንጅት',
-      ],
-    },
-  },
-  {
-    idx: '04',
-    en: {
-      name: 'Predictive Engineering',
-      impact: '< 8 min Dispatch',
-      tags: [
-        'HVAC Vibration Sensing',
-        'Water Pressure & Boiler Alerts',
-        'Smart Keylock Diagnostics',
-        'Pre-Guest Defect Resolution',
-        'Autonomous Work Orders',
-      ],
-    },
-    am: {
-      name: 'ቅድመ-ግምት ኢንጂነሪንግ',
-      impact: '< 8 ደቂቃ ምላሽ',
-      tags: [
-        'የኤሲ እና የውሃ ግፊት ቁጥጥር',
-        'የስማርት ቁልፍ ማንቂያዎች',
-        'እንግዶች ከመግባታቸው በፊት ጥገና',
-        'ራስ-ሰር የስራ ትዕዛዝ',
-      ],
-    },
-  },
-  {
-    idx: '05',
-    en: {
-      name: 'Staff Arrival Alignment',
-      impact: '-18% Overtime',
-      tags: [
-        'Shift Calibration by Occupancy',
-        'Banquet Peak Allocation',
-        'Attendance Anomaly Detection',
-        'Cross-Department Balancing',
-        'Overtime Mitigation Engine',
-      ],
-    },
-    am: {
-      name: 'የሰራተኞች ሰዓት ማስተካከያ',
-      impact: '-18% የትርፍ ሰዓት',
-      tags: [
-        'የፈረቃ መርሃ-ግብር ማስተካከያ',
-        'የግብዣ ወቅት ሰራተኛ ምደባ',
-        'የትርፍ ሰዓት ወጪ ቅነሳ',
-        'የክፍሎች ቅንጅት',
-      ],
-    },
-  },
-  {
-    idx: '06',
-    en: {
-      name: 'Guest In-Stay Recovery',
-      impact: '4.9 Star Index',
-      tags: [
-        'In-Stay Sentiment Radar',
-        'Instant Service Recovery Alerts',
-        'VIP Preference Memory',
-        'Multi-Lingual Concierge',
-        'Zero Negative Review Escalation',
-      ],
-    },
-    am: {
-      name: 'የእንግዶች እርካታ ጥበቃ',
-      impact: '4.9 የእርካታ ነጥብ',
-      tags: [
-        'የእንግዶች ስሜት መከታተያ',
-        'ፈጣን የማካካሻ እርምጃ',
-        'የቪአይፒ ምርጫ ማስታወሻ',
-        'ባለብዙ ቋንቋ አገልግሎት',
-      ],
-    },
-  },
-  {
-    idx: '07',
-    en: {
-      name: 'Owner & Board P&L',
-      impact: 'Real-Time P&L',
-      tags: [
-        'Live RevPAR & GOPPAR Ledger',
-        'Payroll vs Revenue Ratio',
-        'Daily Departmental Budget Variances',
-        'Executive Morning WhatsApp Digest',
-        'Investor-Ready Financials',
-      ],
-    },
-    am: {
-      name: 'የባለቤቶች እና የቦርድ P&L',
-      impact: 'ቀጥታ የፋይናንስ እይታ',
-      tags: [
-        'የቀጥታ ገቢና ወጪ መዝገብ',
-        'የደመወዝ እና ገቢ ንፅፅር',
-        'የዕለቱ የስራ አስፈፃሚ ሪፖርት',
-        'ለባለሀብቶች ዝግጁ የፋይናንስ እይታ',
-      ],
-    },
-  },
+  { idx: '01', en: { name: 'Earn more from the rooms you sell', impact: 'Revenue', tags: ['Review rates with confidence', 'Spot missed earning opportunities', 'Make informed pricing decisions'] }, am: { name: 'ከሚሸጡት ክፍሎች የተሻለ ገቢ', impact: 'ገቢ', tags: ['ዋጋዎችን በእርግጠኝነት ይገምግሙ', 'የገቢ እድሎችን ይለዩ', 'በመረጃ የተደገፈ ውሳኔ'] } },
+  { idx: '02', en: { name: 'Know what is booked and what is open', impact: 'Occupancy', tags: ['See availability clearly', 'Plan around arrivals', 'Keep reservations organized'] }, am: { name: 'የተያዙ እና ክፍት ክፍሎችን ይወቁ', impact: 'ሙሌት', tags: ['ክፍት ክፍሎችን ይመልከቱ', 'የእንግዶች መምጫ ያቅዱ', 'ቦታ ማስያዝን ያደራጁ'] } },
+  { idx: '03', en: { name: 'Have rooms ready when guests arrive', impact: 'Readiness', tags: ['Prioritize the next check-in', 'Follow room preparation', 'Reduce front-desk follow-ups'] }, am: { name: 'እንግዶች ሲመጡ ክፍሎች ዝግጁ ይሁኑ', impact: 'ዝግጁነት', tags: ['ለቀጣዩ እንግዳ ቅድሚያ', 'የክፍል ዝግጅትን ይከታተሉ', 'የመጠያየቅ ጊዜ ይቀንሱ'] } },
+  { idx: '04', en: { name: 'Keep small issues from spoiling a stay', impact: 'Maintenance', tags: ['Keep repairs visible', 'Assign clear responsibility', 'Track issues through to resolution'] }, am: { name: 'ትንንሽ ችግሮች ቆይታን እንዳያበላሹ', impact: 'ጥገና', tags: ['ጥገናዎችን ይከታተሉ', 'ኃላፊነት ይመድቡ', 'እስከ መፍትሄ ድረስ ይከታተሉ'] } },
+  { idx: '05', en: { name: 'Give every shift a clearer plan', impact: 'Team time', tags: ['Organize staff schedules', 'Coordinate department priorities', 'Spend less time chasing status'] }, am: { name: 'ለእያንዳንዱ ፈረቃ ግልጽ ዕቅድ', impact: 'የቡድን ጊዜ', tags: ['የሰራተኞች መርሃ ግብር', 'የክፍሎች ቅድሚያ ቅንጅት', 'ያነሰ ክትትል ጊዜ'] } },
+  { idx: '06', en: { name: 'Follow through on what guests need', impact: 'Guest care', tags: ['Keep complaints from getting lost', 'Follow up on service issues', 'Learn from guest feedback'] }, am: { name: 'የእንግዶችን ፍላጎት ይከታተሉ', impact: 'እንግዳ እንክብካቤ', tags: ['ቅሬታዎችን ይመዝግቡ', 'የአገልግሎት ችግሮችን ይከታተሉ', 'ከእንግዶች አስተያየት ይማሩ'] } },
+  { idx: '07', en: { name: 'Understand where the money goes', impact: 'Financial clarity', tags: ['Review guest charges and payments', 'Keep financial records together', 'Make better informed owner decisions'] }, am: { name: 'ገንዘቡ ወዴት እንደሚሄድ ይወቁ', impact: 'የፋይናንስ እይታ', tags: ['ክፍያዎችን ይገምግሙ', 'መዝገቦችን በአንድ ያድርጉ', 'በመረጃ የተደገፈ ውሳኔ'] } },
 ]
 
 const BRIEF_CARDS = [
@@ -404,11 +206,11 @@ const BRIEF_CARDS = [
     id: 'occupancy',
     accent: false,
     en: {
-      title: '91.8% Occupancy',
+      title: '91.3% Occupancy',
       desc: '84 of 92 suites reserved tonight. 8 open rooms held for peak walk-in yield capture before late check-in.',
     },
     am: {
-      title: '91.8% የክፍል ሙሌት',
+      title: '91.3% የክፍል ሙሌት',
       desc: 'ከ92 ክፍሎች 84ቱ ዛሬ ማታ ተይዘዋል። የቀሩት 8 ክፍሎች ከፍተኛ ዋጋ ላላቸው እንግዶች ተመድበዋል።',
     },
     icon: (
@@ -424,12 +226,12 @@ const BRIEF_CARDS = [
     accent: true,
     isAction: true,
     en: {
-      title: '+4,500 ETB Dynamic Yield',
-      desc: 'Regional convention inflow detected. Recommended peak rate increase of +4,500 ETB committed with 1-tap GM approval.',
+      title: 'A Better Weekend Rate',
+      desc: 'A busy weekend creates a pricing opportunity. Review a suggested +4,500 ETB rate change before deciding whether to approve it.',
     },
     am: {
       title: '+4,500 ብር ተለዋዋጭ ዋጋ',
-      desc: 'በከተማው ባለው ጉባኤ ምክንያት የቀሩትን ክፍሎች ዋጋ በ+4,500 ብር እንዲጨምር የሥራ አስኪያጁን ይሁንታ አግኝቷል።',
+      desc: 'ብዙ እንግዶች በሚመጡበት የሳምንቱ መጨረሻ የዋጋ እድል አለ። የ+4,500 ብር የዋጋ ለውጥ ምክር ከማጽደቅዎ በፊት ይገምግሙ።',
     },
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
@@ -442,12 +244,12 @@ const BRIEF_CARDS = [
     id: 'engineering',
     accent: false,
     en: {
-      title: 'Floor 3 AC Cleared',
-      desc: 'Compressor anomaly flagged at 06:12 AM and routed to technician. Cleared before guest arrival. 0 pending work orders.',
+      title: 'A Room Ready Again',
+      desc: 'A reported AC issue is assigned to maintenance and marked resolved before check-in. The front desk can see the update without another call.',
     },
     am: {
       title: 'የ3ኛ ወለል ኤሲ ተስተካክሏል',
-      desc: 'ከጠዋቱ 12፡12 ሰዓት የታየው የኤሲ ብልሽት እንግዶች ከመግባታቸው በፊት ተስተካክሎ ክፍሉ ዝግጁ ሆኗል።',
+      desc: 'የተዘገበው የኤሲ ችግር ለጥገና ቡድኑ ተመድቦ እንግዳው ከመግባቱ በፊት ተፈትቷል። የፊት ዴስክ ቡድኑ ያለ ተጨማሪ ጥሪ ለውጡን ያያል።',
     },
     icon: (
       <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[var(--purple-glow)]">
@@ -493,8 +295,9 @@ const BRIEF_CARDS = [
 ]
 
 export default function App() {
-  const [lang, setLang] = useState('en')
+  const [lang, setLang] = useState(() => new URLSearchParams(window.location.search).get('lang') === 'am' ? 'am' : 'en')
   const [activeSlide, setActiveSlide] = useState(0)
+  const [slidesPaused, setSlidesPaused] = useState(() => window.matchMedia('(prefers-reduced-motion: reduce)').matches)
   const [approved, setApproved] = useState(false)
   const [clock, setClock] = useState('')
   const [pageLoaded, setPageLoaded] = useState(false)
@@ -620,7 +423,7 @@ export default function App() {
           }
         })
       },
-      { threshold: 0.12 }
+      { threshold: 0.01 }
     )
 
     const sections = document.querySelectorAll('.flow-section')
@@ -644,16 +447,17 @@ export default function App() {
   }
 
   function nextSlide() {
-    setActiveSlide((prev) => (prev === 0 ? SLIDES.length - 1 : prev + 1) % SLIDES.length)
+    setActiveSlide((prev) => (prev + 1) % SLIDES.length)
   }
 
   // Consistent, regular automatic slideshow (8.2s cadence)
   useEffect(() => {
+    if (slidesPaused) return
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % SLIDES.length)
     }, 8200)
     return () => clearInterval(timer)
-  }, [activeSlide])
+  }, [activeSlide, slidesPaused])
 
   const slide = SLIDES[activeSlide]
 
@@ -661,17 +465,7 @@ export default function App() {
     <div ref={containerRef} className={`site-wrapper ${pageLoaded ? 'loaded' : 'pre-load'}`}>
       {/* ——— CINEMATIC HERO STAGE WITH AUTO-SLIDESHOW & LOAD ANIMATIONS ——— */}
       <section className="cinematic-hero" id="top">
-        {/* Silky cross-fade background layers */}
-        {SLIDES.map((s, idx) => (
-          <img
-            key={s.bg + idx}
-            src={s.bg}
-            alt={`መሪAgent Hotel CEO AI — ${s.word} — ${s.sub}`}
-            className={`sculpture-bg-layer ${idx === activeSlide ? 'active' : ''}`}
-            loading={idx === 0 ? 'eager' : 'lazy'}
-          />
-        ))}
-
+        <HeroScene activeSlide={activeSlide} />
         <div className="sculpture-vignette" />
 
         {/* Minimalist Top Navigation */}
@@ -680,15 +474,15 @@ export default function App() {
             <img src="/logo.png" alt="መሪAgent Hotel CEO AI Logo" className="brand-header-logo" width="140" height="38" />
           </a>
 
-          <nav className="nav-center-links">
+          <nav className="nav-center-links" aria-label="Main navigation">
             <a href="#philosophy" className="nav-link-cinematic">
-              {lang === 'am' ? 'መርህ' : 'Principle'}
+              {lang === 'am' ? 'ጥቅሞች' : 'Benefits'}
             </a>
             <a href="#briefing" className="nav-link-cinematic">
               {lang === 'am' ? 'ማጠቃለያ' : 'Briefing'}
             </a>
             <a href="#specialists" className="nav-link-cinematic">
-              {lang === 'am' ? 'ስፔሻሊስቶች' : 'Specialists'}
+              {lang === 'am' ? 'ለሆቴልዎ' : 'For your hotel'}
             </a>
             <a href="#shift" className="nav-link-cinematic">
               {lang === 'am' ? 'ለውጥ' : 'The Shift'}
@@ -699,6 +493,7 @@ export default function App() {
           </nav>
 
           <div className="nav-right-actions">
+            <a href={`/docs/${lang === 'am' ? '?lang=am' : ''}`} className="nav-link-cinematic docs-nav-link">Docs</a>
 
 
             <button
@@ -737,6 +532,7 @@ export default function App() {
         {/* Centerpiece Headline with Flow Animations on Load and Change */}
         <div className="cinematic-center">
           <div key={activeSlide} className="slide-content-anim">
+            <p className="hero-eyebrow">{lang === 'am' ? 'መሪAgent · ለሆቴልዎ የAI ረዳት' : 'MeriAgent · AI for hotel owners & teams'}</p>
             <h1 className="hero-giant-word">
               {lang === 'am' ? slide.wordAm : slide.word}
             </h1>
@@ -747,6 +543,7 @@ export default function App() {
               {lang === 'am' ? slide.subAm : slide.sub}
             </p>
 
+            <p className="hero-description">{lang === 'am' ? 'ቦታ ማስያዝ፣ የክፍል ዝግጅት፣ ገቢ እና የእንግዳ እንክብካቤ በአንድ ቦታ። ጊዜ ይቆጥቡ፣ የገቢ እድሎችን ይለዩ፣ የተሻለ ቆይታ ይስጡ።' : 'Bring reservations, room readiness, revenue, and guest care together. Save your team time, find earning opportunities, and deliver stays guests remember.'}</p>
             <button
               type="button"
               className="hero-pill-btn cursor-pointer"
@@ -770,8 +567,12 @@ export default function App() {
                 className={`dot-btn ${i === activeSlide ? 'active' : ''}`}
                 onClick={() => setActiveSlide(i)}
                 aria-label={`Slide ${i + 1}`}
+                aria-pressed={i === activeSlide}
               />
             ))}
+            <button type="button" className="slideshow-pause" onClick={() => setSlidesPaused(!slidesPaused)} aria-label={slidesPaused ? 'Play hero slideshow' : 'Pause hero slideshow'}>
+              {slidesPaused ? '▶' : 'Ⅱ'}
+            </button>
           </div>
 
           <a href="#philosophy" className="scroll-cue">
@@ -783,7 +584,7 @@ export default function App() {
 
       {/* ——— CHAPTER 01: THE EXECUTIVE LAYER (FLOWS WITH HERO) ——— */}
       <section className="flow-section" id="philosophy">
-        <div className="flow-kicker">01 / PRINCIPLE</div>
+        <div className="flow-kicker">01 / WHY MERIAGENT</div>
 
         <h2 className="flow-giant-title">
           {lang === 'am' ? (
@@ -804,7 +605,7 @@ export default function App() {
         <p className="flow-lead">
           {lang === 'am'
             ? 'አምስት የተለያዩ ሲስተሞችን ከመፈተሽ ይልቅ በየዕለቱ የሆቴሉን ሙሉ ሁኔታ የሚያጠቃልል አንድ ድምፅ።'
-            : 'One unified intelligence coordinates housekeeping, engineering, and revenue under the General Manager.'}
+            : 'MeriAgent is an AI hotel management platform for owners, general managers, and their teams. Bring daily operations into one place so you can see what matters, decide faster, and focus on growing your hotel.'}
         </p>
 
         {/* Squishy animated pillar cards */}
@@ -820,13 +621,15 @@ export default function App() {
             />
           ))}
         </div>
+
+        <ProductShowcase lang={lang} />
       </section>
 
       {/* ——— CHAPTER 02: THE 07:00 AM BRIEF (COMPONENT FROM IMAGE IN BLACK & PURPLE) ——— */}
       <section className="flow-section" id="briefing">
         <div className="brief-header-row">
           <div>
-            <div className="flow-kicker">02 / DAILY BRIEF</div>
+            <div className="flow-kicker">02 / A DAY WITH MERIAGENT</div>
             <h2 className="brief-title-headline">
               {lang === 'am' ? (
                 <>
@@ -864,6 +667,7 @@ export default function App() {
           </div>
         </div>
 
+        <p className="brief-example-note">{lang === 'am' ? 'የምሳሌ ማጠቃለያ · ቁጥሮቹ እና እርምጃዎቹ ማሳያ ብቻ ናቸው።' : 'Illustrative product walkthrough · Sample figures and actions, showing what a clearer day could look like.'}</p>
         {/* Horizontal Cards Carousel Track */}
         <div className="brief-cards-track" ref={briefTrackRef}>
           {BRIEF_CARDS.map((card) => (
@@ -893,11 +697,11 @@ export default function App() {
                       className={`brief-interactive-btn ${approved ? 'approved' : ''}`}
                     >
                       {approved
-                        ? (lang === 'am' ? 'ጸድቋል ✓' : 'Approved ✓')
+                        ? (lang === 'am' ? 'ጸድቋል ✓' : 'Demo approved ✓')
                         : (lang === 'am' ? '+4,500 ብር አጽድቅ' : 'Authorize +4,500 ETB')}
                     </button>
                     <span className="brief-clock-tag">
-                      {clock || '07:00'} EAT · Live
+                      07:00 EAT · Demo
                     </span>
                   </div>
                 )}
@@ -909,13 +713,13 @@ export default function App() {
 
       {/* ——— CHAPTER 03: SEVEN SPECIALISTS (STREAMLINED FLOW) ——— */}
       <section className="flow-section" id="specialists">
-        <div className="flow-kicker">03 / SPECIALISTS</div>
+        <div className="flow-kicker">03 / BUILT FOR YOUR HOTEL</div>
 
         <h2 className="flow-giant-title">
           {lang === 'am' ? (
-            <>ሰባቱ ክፍሎች። <em>አንድ ጠረጴዛ።</em></>
+            <>እያንዳንዱ ቡድን። <em>የተሻለ ቀን።</em></>
           ) : (
-            <>SEVEN DEPARTMENTS. <em>ONE MIND.</em></>
+            <>EVERY TEAM. <em>A BETTER DAY.</em></>
           )}
         </h2>
 
@@ -923,8 +727,8 @@ export default function App() {
 
         <p className="flow-lead">
           {lang === 'am'
-            ? 'እያንዳንዱ ክፍል በራሱ አቅም ይሰራል፤ ሁሉም በአንድ ዋና ስራ አስፈፃሚ ድምፅ ስር ይተባበራሉ።'
-            : 'Seven specialized AI layers tailored to your hotel, unified under a single CEO intelligence.'}
+            ? 'ከመጀመሪያው ቦታ ማስያዝ እስከ መጨረሻው ክፍያ ድረስ ለእያንዳንዱ ክፍል ግልጽ የስራ መንገድ ይስጡ።'
+            : 'From the first booking to the final bill, give every department a clearer way to work. Explore what that means for your hotel.'}
         </p>
 
         {/* 7 Clean High-Impact Specialists Accordion */}
@@ -1023,7 +827,7 @@ export default function App() {
                   'ያልተስተካከሉ የሳምንቱ መጨረሻ ዋጋዎች የገቢ ኪሳራ ያስከትላሉ',
                 ]
                 : [
-                  '5 Separate logins across PMS, POS & channel managers',
+                  'Bookings, room updates, and payments scattered across screens',
                   'Supervisors chased over endless WhatsApp messages',
                   'Maintenance faults discovered after guest complaints',
                   'Unadjusted weekend rates leaving money on the table',
@@ -1049,14 +853,14 @@ export default function App() {
                 ? [
                   'የጠዋት 1፡00 ሰዓት ግልጽና አጭር ማጠቃለያ በዴስክዎ ላይ',
                   'የክፍል ጽዳት እንደ እንግዶች መግቢያ ሰዓት በራስ-ሰር ቅድሚያ ይሰጠዋል',
-                  'የመሳሪያዎች እና ኤሲ ብልሽት ወዲያውኑ ለቴክኒሻኖች ይመደባል',
-                  'ተለዋዋጭ የዋጋ ጭማሪዎች በ1-ጠቅታ ይጸድቃሉ',
+                  'የጥገና ስራዎች ከምደባ እስከ መፍትሄ ይከታተላሉ',
+                  'የዋጋ ምክሮች በአስተዳዳሪው ቁጥጥር ይገመገማሉ',
                 ]
                 : [
                   'One 07:00 AM plain-language briefing on your desk',
                   'Rooms prioritized automatically to match guest check-ins',
-                  'Equipment anomalies routed to technicians instantly',
-                  'Dynamic yield rate increases committed with 1 tap',
+                  'Maintenance tasks tracked from assignment to resolution',
+                  'Rate recommendations reviewed with the manager in control',
                 ]
               ).map((text, idx) => (
                 <li key={idx} className="shift-list-item">
@@ -1075,9 +879,9 @@ export default function App() {
 
         <h2 className="flow-giant-title">
           {lang === 'am' ? (
-            <>ሲኢኦን <em>ጠረጴዛዎ ላይ ያድርጉ።</em></>
+            <>ሆቴልዎ <em>ምን ሊያገኝ እንደሚችል ይዩ።</em></>
           ) : (
-            <>PUT AN AI CEO <em>ON YOUR DESK.</em></>
+            <>SEE WHAT YOUR HOTEL <em>COULD GAIN.</em></>
           )}
         </h2>
 
@@ -1085,8 +889,8 @@ export default function App() {
 
         <p className="flow-lead">
           {lang === 'am'
-            ? 'የስልክ ቁጥርዎን እና የሆቴልዎን ስም ይተዉልን። መሪAgent በሆቴልዎ ላይ እንዴት እንደሚሰራ በቀጥታ ደውለን እናስረዳዎታለን።'
-            : 'Leave your phone number and hotel details. Our founders will call you directly to discuss how መሪAgent runs your operations.'}
+            ? 'ስለ ሆቴልዎ ይንገሩን። MeriAgent ጊዜ ለመቆጠብ፣ አገልግሎትን ለማሻሻል እና የገቢ እድሎችን ለመለየት እንዴት እንደሚረዳ እናሳይዎታለን።'
+            : 'Tell us about your property. We’ll walk through your daily challenges and show where MeriAgent can help you save time, improve service, and uncover revenue opportunities.'}
         </p>
 
         <div className="contact-flow-grid">
@@ -1281,6 +1085,8 @@ export default function App() {
             <span className="font-['Noto_Serif_Ethiopic']">መሪ</span>Agent — Hotel CEO AI
           </span>
         </div>
+
+        <a href={`/docs/${lang === 'am' ? '?lang=am' : ''}`} className="nav-link-cinematic">Docs ↗</a>
 
         <button
           type="button"
